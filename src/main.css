@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .steps {
+    counter-reset: step;
+    @apply inline-grid grid-flow-col auto-cols-[1fr];
+  }
+
+  .step {
+    @apply grid grid-rows-[40px,1fr] grid-cols-[auto] place-items-center min-w-[4rem] break-all text-center;
+  }
+
+  .step::after {
+    @apply content-[counter(step)] relative z-10 col-start-1 row-start-1 w-8 h-8 border rounded-full grid place-items-center place-self-center;
+    counter-increment: step;
+  }
+
+  .step:not(:first-child)::before {
+    @apply content-[''];
+  }
+}
